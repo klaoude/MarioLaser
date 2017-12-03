@@ -37,7 +37,7 @@ void initSDL()
 	initLevel();
 
 	player = (Player*)malloc(sizeof(Player));
-	InitPlayer(player, renderer);
+	InitPlayer(player, renderer, {100, 100});
 }
 
 void update()
