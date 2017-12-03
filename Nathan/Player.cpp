@@ -14,40 +14,40 @@ void InitPlayer(Player* player, SDL_Renderer* renderer)
 	surf = SDL_LoadBMP("Sprites/mario-gauche.bmp");
 	player->pPlayerTextures[3] = SDL_CreateTextureFromSurface(renderer, surf);
 
-	player->x = 100;
-	player->y = 100;
+	player->pos.x = 100;
+	player->pos.y = 100;
+
+	player->speed = 5;
 
 	player->animationNum = 0;
 }
 
-void UpdatePlayer(Player* player, SDL_Keycode keycode)
+void UpdatePlayer(Player* player, Input* input)
 {
-	switch (keycode)
+	if (input->up)
 	{
-	case SDLK_LEFT:
-		player->x -= 10;
-		player->animationNum = 3;
-		break;
-	case SDLK_RIGHT:
-		player->x += 10;
-		player->animationNum = 2;
-		break;
-	case SDLK_UP:
-		player->y -= 10;
-		player->animationNum = 1;
-		break;
-	case SDLK_DOWN:
-		player->y += 10;
-		player->animationNum = 0;
-		break;
+		player->pos.y -= player->speed;
+	}
+	else if (input->down)
+	{
+		player->pos.y += player->speed;
+	}
+
+	if (input->left)
+	{
+		player->pos.x -= player->speed;
+	}
+	else if (input->right)
+	{
+		player->pos.x += player->speed;
 	}
 }
 
 void DrawPlayer(Player* player, SDL_Renderer* renderer)
 {
 	SDL_Rect rect;
-	rect.x = player->x;
-	rect.y = player->y;
+	rect.x = player->pos.x;
+	rect.y = player->pos.y;
 	rect.h = 32;
 	rect.w = 32;
 

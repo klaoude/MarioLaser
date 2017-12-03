@@ -21,7 +21,7 @@ void InitEnemy(Enemy* enemy, SDL_Renderer* renderer)
 }
 void UpdateEnemy(Enemy* enemy, Player* player)
 {
-	if (player->x > enemy->x)
+	if (player->pos.x > enemy->x)
 	{
 		enemy->x += 0.2;
 		
@@ -31,7 +31,7 @@ void UpdateEnemy(Enemy* enemy, Player* player)
 		enemy->x -= 0.2;
 		
 	}
-	if (player->y > enemy->y)
+	if (player->pos.y > enemy->y)
 	{
 		enemy->y += 0.2;
 		enemy->animationNum = 0;
@@ -41,9 +41,9 @@ void UpdateEnemy(Enemy* enemy, Player* player)
 		enemy->y -= 0.2;
 		enemy->animationNum = 1;
 	}
-	if  ((player->y == enemy->y) && (player->x > enemy->x))
+	if  ((player->pos.y == enemy->y) && (player->pos.x > enemy->x))
 		enemy->animationNum = 2;
-	else if ((player->y == enemy->y) && (player->x < enemy->x))
+	else if ((player->pos.y == enemy->y) && (player->pos.x < enemy->x))
 	{
 		enemy->animationNum = 3;
 	}

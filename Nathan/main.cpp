@@ -14,6 +14,7 @@ const char WINDOW_TITLE[] = "MarioLazer";
 
 Player* player;
 Enemy* enemy;
+Input* input;
 
 SDL_Texture* levelFond;
 
@@ -40,26 +41,20 @@ void initSDL()
 
 	player = (Player*)malloc(sizeof(Player));
 	enemy = (Enemy*)malloc(sizeof(Enemy));
+	input = (Input*)malloc(sizeof(Input));
+
+	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
+
 	InitPlayer(player, renderer);
 	InitEnemy(enemy, renderer);
 }
 
 void update()
 {
-	SDL_Event evnt;
-	UpdateEnemy(enemy,player);
-	while (SDL_PollEvent(&evnt))
-	{
-		switch (evnt.type)
-		{
-		case SDL_QUIT:
-			exit(0);
-			break;
-		case SDL_KEYDOWN:
-			UpdatePlayer(player, evnt.key.keysym.sym);
-			break;
-		}
-	}
+	GetInput(input);
+
+	UpdateEnemy(enemy, player);
+	UpdatePlayer(player, input);
 }
 
 void drawLevel()
