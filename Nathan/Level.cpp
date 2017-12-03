@@ -1,4 +1,6 @@
 #include "Level.h"
+#include "Player.h"
+
 
 void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 {
@@ -43,8 +45,8 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 		for (int j = 0; j < level->h; j++)
 		{
 			SDL_Rect rect;
-			rect.x = i * 32;
-			rect.y = j * 32;
+			rect.x = j * 32;
+			rect.y = i * 32;
 			rect.h = 32;
 			rect.w = 32;
 			switch (level->levelTab[i][j])
@@ -60,4 +62,11 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 				break;
 			}
 		}
+}
+
+bool CollideWithWorld(Level* level, Player* player)
+{
+	if (level->levelTab[(int)(player->pos.y / 32)][(int)(player->pos.x / 32)] == 1)
+		return true;
+	return false;
 }

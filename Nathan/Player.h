@@ -4,6 +4,7 @@
 
 #include "Input.h"
 #include "Utils.h"
+#include "Level.h"
 
 typedef struct Player
 {
@@ -14,5 +15,5 @@ typedef struct Player
 } Player;
 
 void InitPlayer(Player* player, SDL_Renderer* renderer);
-void UpdatePlayer(Player* player, Input* input);
+void UpdatePlayer(Player* player, Input* input, Level* level);
 void DrawPlayer(Player* player, SDL_Renderer* renderer);

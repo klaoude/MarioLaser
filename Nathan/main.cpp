@@ -48,7 +48,7 @@ void update()
 	GetInput(input);
 
 	UpdateEnemy(enemy, player);
-	UpdatePlayer(player, input);
+	UpdatePlayer(player, input, level);
 }
 
 void draw()

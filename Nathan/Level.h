@@ -16,3 +16,5 @@ typedef struct Level
 
 void InitLevel(Level* level, SDL_Renderer* renderer, const char* path);
 void DrawLevel(Level* level, SDL_Renderer* renderer);
+
+bool CollideWithWorld(Level* level, struct Player* player);
