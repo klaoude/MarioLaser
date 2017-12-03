@@ -4,8 +4,9 @@
 
 typedef struct Player
 {
-	SDL_Texture* pPlayerTexture;
+	SDL_Texture* pPlayerTextures[4];
 	float x, y;
+	unsigned char animationNum = 0;
 } Player;
 
 void InitPlayer(Player* player, SDL_Renderer* renderer);

@@ -1,6 +1,7 @@
 #include <SDL.h>
 
 #include "Player.h"
+#include "Enemy.h"
 
 #define SCREEN_HEIGHT 600
 #define SCREEN_WIDTH 800
@@ -12,6 +13,7 @@ SDL_Renderer* renderer;
 const char WINDOW_TITLE[] = "MarioLazer";
 
 Player* player;
+Enemy* enemy;
 
 SDL_Texture* levelFond;
 
@@ -37,12 +39,15 @@ void initSDL()
 	initLevel();
 
 	player = (Player*)malloc(sizeof(Player));
+	enemy = (Enemy*)malloc(sizeof(Enemy));
 	InitPlayer(player, renderer);
+	InitEnemy(enemy, renderer);
 }
 
 void update()
 {
 	SDL_Event evnt;
+	UpdateEnemy(enemy,player);
 	while (SDL_PollEvent(&evnt))
 	{
 		switch (evnt.type)
@@ -79,6 +84,7 @@ void draw()
 	//draw
 	drawLevel();
 	DrawPlayer(player, renderer);
+	DrawEnemy(enemy, renderer);
 
 	SDL_RenderPresent(renderer);
 }
