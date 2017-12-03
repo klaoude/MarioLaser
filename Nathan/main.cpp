@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Level.h"
 
 #define SCREEN_HEIGHT 600
 #define SCREEN_WIDTH 800
@@ -16,13 +17,7 @@ Player* player;
 Enemy* enemy;
 Input* input;
 
-SDL_Texture* levelFond;
-
-void initLevel()
-{
-	SDL_Surface* surf = SDL_LoadBMP("Sprites/fond.bmp");
-	levelFond = SDL_CreateTextureFromSurface(renderer, surf);
-}
+Level* level;
 
 void initSDL()
 {
@@ -37,14 +32,13 @@ void initSDL()
 	glContext = SDL_GL_CreateContext(window);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 
-	initLevel();
-
 	player = (Player*)malloc(sizeof(Player));
 	enemy = (Enemy*)malloc(sizeof(Enemy));
 	input = (Input*)malloc(sizeof(Input));
-
 	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
+	level = (Level*)malloc(sizeof(Level));
 
+	InitLevel(level, renderer, "Levels/level1");
 	InitPlayer(player, renderer);
 	InitEnemy(enemy, renderer);
 }
@@ -57,33 +51,18 @@ void update()
 	UpdatePlayer(player, input);
 }
 
-void drawLevel()
-{
-	for (int i = 0; i < 50; i++)
-		for (int j = 0; j < 50; j++)
-		{
-			SDL_Rect rect;
-			rect.x = i * 32;
-			rect.y = j * 32;
-			rect.h = 32;
-			rect.w = 32;
-			SDL_RenderCopy(renderer, levelFond, NULL, &rect);
-		}
-}
-
 void draw()
 {
 	SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
 	SDL_RenderClear(renderer);
 
 	//draw
-	drawLevel();
+	DrawLevel(level, renderer);
 	DrawPlayer(player, renderer);
 	DrawEnemy(enemy, renderer);
 
 	SDL_RenderPresent(renderer);
 }
-
 
 void run()
 {
