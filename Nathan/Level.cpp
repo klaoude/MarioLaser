@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "Level.h"
 #include "Player.h"
 
@@ -66,7 +68,9 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 
 bool CollideWithWorld(Level* level, Player* player)
 {
-	if (level->levelTab[(int)(player->pos.y / 32)][(int)(player->pos.x / 32)] == 1)
+	if (level->levelTab[int(ceil(player->pos.y / 32))][int(ceil(player->pos.x / 32))] == 1)
+		return true;
+	if (level->levelTab[int(floor(player->pos.y / 32))][int(floor(player->pos.x / 32))] == 1)
 		return true;
 	return false;
 }
