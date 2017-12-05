@@ -14,6 +14,11 @@ typedef struct Player
 	unsigned int speed;
 } Player;
 
+typedef struct InfoPlayer
+{
+	unsigned char PlayerLife = 10;
+};
+
 void InitPlayer(Player* player, SDL_Renderer* renderer);
 void UpdatePlayer(Player* player, Input* input, Level* level);
 void DrawPlayer(Player* player, SDL_Renderer* renderer);

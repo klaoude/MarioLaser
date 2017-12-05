@@ -22,7 +22,7 @@ void UpdatePlayer(Player* player, Input* input, Level* level)
 	if (input->up)
 	{
 		player->pos.y -= player->speed;
-		if(CollideWithWorld(level, player))
+		if(CollideWithWorld(level, player)==true)
 			player->pos.y += player->speed;
 
 		player->animationNum = 1;
@@ -30,7 +30,7 @@ void UpdatePlayer(Player* player, Input* input, Level* level)
 	else if (input->down)
 	{
 		player->pos.y += player->speed;
-		if (CollideWithWorld(level, player))
+		if (CollideWithWorld(level, player)==true)
 			player->pos.y -= player->speed;
 		player->animationNum = 0;
 	}
@@ -38,14 +38,14 @@ void UpdatePlayer(Player* player, Input* input, Level* level)
 	if (input->left)
 	{
 		player->pos.x -= player->speed;
-		if (CollideWithWorld(level, player))
+		if (CollideWithWorld(level, player)==true)
 			player->pos.x += player->speed;
 		player->animationNum = 3;
 	}
 	else if (input->right)
 	{
 		player->pos.x += player->speed;
-		if (CollideWithWorld(level, player))
+		if (CollideWithWorld(level, player)==true)
 			player->pos.x -= player->speed;
 		player->animationNum = 2;
 	}

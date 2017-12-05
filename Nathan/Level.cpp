@@ -28,6 +28,13 @@ void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 			case '.':
 				level->levelTab[i][j] = 0;
 				break;
+			case 'O':
+				level->levelTab[i][j] = 2;
+				break;
+			case 'S':
+				level->levelTab[i][j] = 3;
+				break;
+
 			default:
 				level->levelTab[i][j] = 0;
 				break;
@@ -37,6 +44,8 @@ void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 
 	level->pTextureAir = SDL_LoadTexture(renderer, "Sprites/fond.bmp");
 	level->pTextureWall = SDL_LoadTexture(renderer, "Sprites/mur.bmp");
+	level->pTextureEau = SDL_LoadTexture(renderer, "Sprites/water.bmp");
+	level->pTextureSable = SDL_LoadTexture(renderer, "Sprites/Sable.bmp");
 }
 
 void DrawLevel(Level* level, SDL_Renderer* renderer)
@@ -57,6 +66,12 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 			case 1:
 				SDL_RenderCopy(renderer, level->pTextureWall, NULL, &rect);
 				break;
+			case 2 : 
+				SDL_RenderCopy(renderer, level->pTextureEau, NULL, &rect);
+				break;
+			case 3:
+				SDL_RenderCopy(renderer, level->pTextureSable, NULL, &rect);
+				break;
 			default:
 				SDL_RenderCopy(renderer, level->pTextureAir, NULL, &rect);
 				break;
@@ -66,7 +81,13 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 
 bool CollideWithWorld(Level* level, Player* player)
 {
-	if (level->levelTab[(int)(player->pos.y / 32)][(int)(player->pos.x / 32)] == 1)
+	unsigned char xPlayer, yPlayer;
+	xPlayer = player->pos.x /32 ;
+	yPlayer = player->pos.y /32;
+	if (level->levelTab[xPlayer][yPlayer] == 1)
 		return true;
-	return false;
+	else if  (level->levelTab[xPlayer][yPlayer] == 2)
+		return true;
+	else
+		return false;
 }

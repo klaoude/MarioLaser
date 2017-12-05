@@ -12,6 +12,8 @@ typedef struct Level
 
 	SDL_Texture* pTextureWall;
 	SDL_Texture* pTextureAir;
+	SDL_Texture* pTextureEau;
+	SDL_Texture* pTextureSable;
 } Level;
 
 void InitLevel(Level* level, SDL_Renderer* renderer, const char* path);

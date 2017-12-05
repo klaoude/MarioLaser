@@ -2,17 +2,10 @@
 #include "Player.h"
 void InitEnemy(Enemy* enemy, SDL_Renderer* renderer)
 {
-	SDL_Surface* surf = SDL_LoadBMP("Sprites/croco_avant.bmp");
-	enemy->pEnemyTexture[0] = SDL_CreateTextureFromSurface(renderer, surf);
-
- 	surf = SDL_LoadBMP("Sprites/croco_arriere.bmp");
-	enemy->pEnemyTexture[1] = SDL_CreateTextureFromSurface(renderer, surf);
-
-	surf = SDL_LoadBMP("Sprites/croco_droite.bmp");
-	enemy->pEnemyTexture[2] = SDL_CreateTextureFromSurface(renderer, surf);
-
-	surf = SDL_LoadBMP("Sprites/croco_gauche.bmp");
-	enemy->pEnemyTexture[3] = SDL_CreateTextureFromSurface(renderer, surf);
+	enemy->pEnemyTexture[0] = SDL_LoadTexture(renderer, "Sprites/croco_avant.bmp");
+	enemy->pEnemyTexture[1] = SDL_LoadTexture(renderer, "Sprites/croco_arriere.bmp");
+	enemy->pEnemyTexture[2] = SDL_LoadTexture(renderer, "Sprites/croco_droite.bmp");
+	enemy->pEnemyTexture[3] = SDL_LoadTexture(renderer, "Sprites/croco_gauche.bmp");
 
 	enemy->x = 500;
 	enemy->y = 500;
@@ -21,32 +14,42 @@ void InitEnemy(Enemy* enemy, SDL_Renderer* renderer)
 }
 void UpdateEnemy(Enemy* enemy, Player* player)
 {
-	if (player->pos.x > enemy->x)
+	
+	
+	if (player->pos.x -10> enemy->x)
 	{
 		enemy->x += 0.2;
 		
 	}
-	else
+	else if (player->pos.x-10 < enemy->x)
 	{
 		enemy->x -= 0.2;
 		
 	}
-	if (player->pos.y > enemy->y)
+	else
+		enemy->animationNum = 2;
+	if (player->pos.y-10 > enemy->y)
 	{
 		enemy->y += 0.2;
-		enemy->animationNum = 0;
+		//enemy->animationNum = 0;
 	}
-	else
+	else if (player->pos.y-10 < enemy->y)
 	{
 		enemy->y -= 0.2;
-		enemy->animationNum = 1;
+		//enemy->animationNum = 1;
 	}
+	else
+		enemy->animationNum = 2;
+
 	if  ((player->pos.y == enemy->y) && (player->pos.x > enemy->x))
 		enemy->animationNum = 2;
 	else if ((player->pos.y == enemy->y) && (player->pos.x < enemy->x))
 	{
 		enemy->animationNum = 3;
 	}
+	if ((player->pos.y == enemy->y) && (player->pos.x == enemy->x))
+		enemy->animationNum = 2;
+
 
 
 		
