@@ -7,6 +7,8 @@
 #define SCREEN_HEIGHT 600
 #define SCREEN_WIDTH 800
 
+#define NUM_ENEMY 4
+
 SDL_Window* window;
 SDL_GLContext glContext;
 SDL_Renderer* renderer;
@@ -14,7 +16,7 @@ SDL_Renderer* renderer;
 const char WINDOW_TITLE[] = "MarioLazer";
 
 Player* player;
-Enemy* enemy;
+Enemy** enemy;
 Input* input;
 
 Level* level;
@@ -33,22 +35,26 @@ void initSDL()
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
 
 	player = (Player*)malloc(sizeof(Player));
-	enemy = (Enemy*)malloc(sizeof(Enemy));
+	enemy = (Enemy**)malloc(sizeof(Enemy*) * NUM_ENEMY);
+	for (int i = 0; i < NUM_ENEMY; i++)
+		enemy[i] = (Enemy*)malloc(sizeof(Enemy));
 	input = (Input*)malloc(sizeof(Input));
 	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
 	level = (Level*)malloc(sizeof(Level));
 
 	InitLevel(level, renderer, "Levels/level1");
 	InitPlayer(player, renderer);
-	InitEnemy(enemy, renderer);
+	for (int i = 0; i < NUM_ENEMY; i++)
+		InitEnemy(enemy[i], renderer, {300.f, 100.f+i*50.f});
 }
 
-void update()
+void update(double deltatime)
 {
 	GetInput(input);
 
-	UpdateEnemy(enemy, player);
-	UpdatePlayer(player, input, level);
+	for (int i = 0; i < NUM_ENEMY; i++)
+		UpdateEnemy(enemy[i], player, level, deltatime);
+	UpdatePlayer(player, input, level, deltatime);
 }
 
 void draw()
@@ -59,16 +65,26 @@ void draw()
 	//draw
 	DrawLevel(level, renderer);
 	DrawPlayer(player, renderer);
-	DrawEnemy(enemy, renderer);
+	for (int i = 0; i < NUM_ENEMY; i++)
+		DrawEnemy(enemy[i], renderer);
 
 	SDL_RenderPresent(renderer);
 }
 
 void run()
 {
+	Uint64 NOW = SDL_GetPerformanceCounter();
+	Uint64 LAST = 0;
+	double deltaTime = 0;
+
 	while (1)
 	{
-		update();
+		LAST = NOW;
+		NOW = SDL_GetPerformanceCounter();
+
+		deltaTime = (double)((NOW - LAST) * 1000 / SDL_GetPerformanceFrequency());
+
+		update(deltaTime);
 		draw();
 
 		SDL_Delay(1);	

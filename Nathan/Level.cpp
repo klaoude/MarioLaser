@@ -1,5 +1,8 @@
+#include <cmath>
+
 #include "Level.h"
 #include "Player.h"
+#include "Enemy.h"
 
 
 void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
@@ -79,14 +82,20 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 		}
 }
 
-bool CollideWithWorld(Level* level, Player* player)
+bool CollideWithWorldP(Level* level, Player* player)
 {
-	unsigned char xPlayer, yPlayer;
-	xPlayer = player->pos.x /32 ;
-	yPlayer = player->pos.y /32;
-	if (level->levelTab[xPlayer][yPlayer] == 1)
+	if (level->levelTab[int(ceil(player->pos.y / 32))][int(ceil(player->pos.x / 32))] == 1)
 		return true;
-	else if  (level->levelTab[xPlayer][yPlayer] == 2)
+	if (level->levelTab[int(floor(player->pos.y / 32))][int(floor(player->pos.x / 32))] == 1)
+		return true;
+	return false;
+}
+
+bool CollideWithWorldE(Level* level, Enemy* enemy)
+{
+	if (level->levelTab[int(ceil(enemy->pos.y / 32))][int(ceil(enemy->pos.x / 32))] == 1)
+		return true;
+	if (level->levelTab[int(floor(enemy->pos.y / 32))][int(floor(enemy->pos.x / 32))] == 1)
 		return true;
 	else
 		return false;

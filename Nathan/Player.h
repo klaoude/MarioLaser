@@ -11,7 +11,7 @@ typedef struct Player
 	SDL_Texture* pPlayerTextures[4];
 	Vec2 pos;
 	unsigned char animationNum = 0;
-	unsigned int speed;
+	double speed;
 } Player;
 
 typedef struct InfoPlayer
@@ -20,5 +20,5 @@ typedef struct InfoPlayer
 };
 
 void InitPlayer(Player* player, SDL_Renderer* renderer);
-void UpdatePlayer(Player* player, Input* input, Level* level);
+void UpdatePlayer(Player* player, Input* input, Level* level, double deltatime);
 void DrawPlayer(Player* player, SDL_Renderer* renderer);

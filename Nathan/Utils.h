@@ -8,3 +8,5 @@ typedef struct Vec2
 } Vec2;
 
 SDL_Texture* SDL_LoadTexture(SDL_Renderer* renderer, const char* fileName);
+
+float dist(Vec2 a, Vec2 b);
