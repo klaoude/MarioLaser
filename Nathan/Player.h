@@ -12,12 +12,9 @@ typedef struct Player
 	Vec2 pos;
 	unsigned char animationNum = 0;
 	double speed;
+	unsigned char PlayerLife = 10;
 } Player;
 
-typedef struct InfoPlayer
-{
-	unsigned char PlayerLife = 10;
-};
 
 void InitPlayer(Player* player, SDL_Renderer* renderer);
 void UpdatePlayer(Player* player, Input* input, Level* level, double deltatime);

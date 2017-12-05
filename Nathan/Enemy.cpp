@@ -66,8 +66,8 @@ void DrawEnemy(Enemy* enemy, SDL_Renderer* renderer)
 	SDL_Rect rect;
 	rect.x = enemy->pos.x;
 	rect.y = enemy->pos.y;
-	rect.h = 32;
-	rect.w = 32;
+	rect.h = 64;
+	rect.w = 64;
 
 	SDL_RenderCopy(renderer,
 				   enemy->pEnemyTexture[enemy->animationNum], 

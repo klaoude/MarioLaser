@@ -11,7 +11,7 @@ void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 	
 	char buff[255];
 	fgets(buff, 255, file);
-	level->w = (buff[0] - 0x30) * 10 + (buff[1] - 0x30);
+	level->w = (buff[0] - '0') * 10 + (buff[1] - '0');
 	level->h = (buff[3] - 0x30) * 10 + (buff[4] - 0x30);
 
 	level->levelTab = (unsigned char**)malloc(level->w*sizeof(char*));
@@ -84,7 +84,8 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 
 bool CollideWithWorldP(Level* level, Player* player)
 {
-	if (level->levelTab[int(ceil(player->pos.y / 32))][int(ceil(player->pos.x / 32))] == 1)
+	if (level->levelTab[int(ceil(player->pos.y / 32))][int(ceil(player->pos.x / 32))] == 1 ||
+		level->levelTab[int(ceil(player->pos.y / 32))][int(ceil(player->pos.x / 32))] == 2)
 		return true;
 	if (level->levelTab[int(floor(player->pos.y / 32))][int(floor(player->pos.x / 32))] == 1)
 		return true;
