@@ -128,6 +128,8 @@ void quitSDL()
 	SDL_Quit();
 }
 
+
+
 int main(int argc, char** argv)
 {
 	initSDL();
