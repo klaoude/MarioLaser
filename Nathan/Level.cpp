@@ -3,7 +3,7 @@
 #include "Level.h"
 #include "Player.h"
 #include "Enemy.h"
-
+#include <SDL_ttf.h>
 
 void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 {
@@ -47,12 +47,28 @@ void InitLevel(Level* level, SDL_Renderer* renderer, const char* path)
 
 	level->pTextureAir = SDL_LoadTexture(renderer, "Sprites/fond.bmp");
 	level->pTextureWall = SDL_LoadTexture(renderer, "Sprites/mur.bmp");
-	level->pTextureEau = SDL_LoadTexture(renderer, "Sprites/water.bmp");
+	level->pTextureEau[0] = SDL_LoadTexture(renderer, "Sprites/water.bmp");
+	level->pTextureEau[1] = SDL_LoadTexture(renderer, "Sprites/water2.bmp");
 	level->pTextureSable = SDL_LoadTexture(renderer, "Sprites/Sable.bmp");
 }
 
-void DrawLevel(Level* level, SDL_Renderer* renderer)
+void DrawLevel(Level* level, SDL_Renderer* renderer, Uint64 temps2)
 {
+	Uint64 temps = SDL_GetTicks();
+	int flag ;
+	if ((temps - temps2) < 1000)
+	{
+
+		flag = 1;
+	}
+	else if ((temps - temps2) < 2000)
+		flag = 0;
+	else
+	{
+		temps2 = temps;
+		flag = 1;
+	}
+
 	for (int i = 0; i < level->w; i++)
 		for (int j = 0; j < level->h; j++)
 		{
@@ -70,7 +86,7 @@ void DrawLevel(Level* level, SDL_Renderer* renderer)
 				SDL_RenderCopy(renderer, level->pTextureWall, NULL, &rect);
 				break;
 			case 2 : 
-				SDL_RenderCopy(renderer, level->pTextureEau, NULL, &rect);
+				SDL_RenderCopy(renderer, level->pTextureEau[flag], NULL, &rect);
 				break;
 			case 3:
 				SDL_RenderCopy(renderer, level->pTextureSable, NULL, &rect);

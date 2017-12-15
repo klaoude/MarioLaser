@@ -42,13 +42,13 @@ void UpdateBullet(Bullet* bullet, Player* player, Input* input)
 	
 	if ((dist(startPos, bullet->bulletPos)) < (5 * 32))
 	{
-		if (bullet->down = 1)
+		if (bullet->down == 1)
 			bullet->bulletPos.y += 0.2;
-		else if (bullet->up = 1)
+		else if (bullet->up == 1)
 			bullet->bulletPos.y -= 0.2;
-		else if (bullet->right = 1)
+		else if (bullet->right == 1)
 			bullet->bulletPos.x += 0.2;
-		else if (bullet->left = 1)
+		else if (bullet->left ==1)
 			bullet->bulletPos.x -= 0.2;
 
 	}

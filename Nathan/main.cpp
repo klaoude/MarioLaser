@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <time.h>
 
 #include "Player.h"
 #include "Enemy.h"
@@ -13,6 +14,7 @@
 SDL_Window* window;
 SDL_GLContext glContext;
 SDL_Renderer* renderer;
+Uint64 temps2 = 0;
 
 const char WINDOW_TITLE[] = "MarioLazer";
 
@@ -68,7 +70,7 @@ void draw()
 	SDL_RenderClear(renderer);
 
 	//draw
-	DrawLevel(level, renderer);
+	DrawLevel(level, renderer, temps2);
 	DrawPlayer(player, renderer);
 	for (int i = 0; i < NUM_ENEMY; i++)
 		DrawEnemy(enemy[i], renderer);
