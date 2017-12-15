@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Level.h"
 #include "Bullet.h"
+#include "Menu.h"
 
 #define SCREEN_HEIGHT 600
 #define SCREEN_WIDTH 800
@@ -21,7 +22,7 @@ const char WINDOW_TITLE[] = "MarioLazer";
 Player* player;
 Enemy** enemy;
 Input* input;
-Bullet* bullet;
+File* bullets;
 
 Level* level;
 
@@ -42,7 +43,6 @@ void initSDL()
 	enemy = (Enemy**)malloc(sizeof(Enemy*) * NUM_ENEMY);
 	for (int i = 0; i < NUM_ENEMY; i++)
 		enemy[i] = (Enemy*)malloc(sizeof(Enemy));
-	bullet = (Bullet*)malloc(sizeof(Bullet));
 	input = (Input*)malloc(sizeof(Input));
 	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
 	level = (Level*)malloc(sizeof(Level));
@@ -51,7 +51,19 @@ void initSDL()
 	InitPlayer(player, renderer);
 	for (int i = 0; i < NUM_ENEMY; i++)
 		InitEnemy(enemy[i], renderer, {300.f, 100.f+i*50.f});
-	InitBullet(bullet, player, renderer);
+}
+
+void updateAllBullets(double deltaTime)
+{
+	File* tmp = bullets;
+	while (tmp != NULL && tmp != (File*)0xdddddddd)
+	{
+		if (UpdateBullet(tmp->value, deltaTime) == false)
+		{
+ 			delFile(&bullets, tmp->value);
+		}
+		tmp = tmp->next;
+	}
 }
 
 void update(double deltatime)
@@ -60,8 +72,18 @@ void update(double deltatime)
 
 	for (int i = 0; i < NUM_ENEMY; i++)
 		UpdateEnemy(enemy[i], player, level, deltatime);
-	UpdatePlayer(player, input, level, deltatime);
-	UpdateBullet(bullet, player, input);
+	UpdatePlayer(player, input, &bullets, level, renderer, deltatime);
+	updateAllBullets(deltatime);
+}
+
+void drawAllBullets()
+{
+	File* tmp = bullets;
+	while (tmp != NULL)
+	{
+		DrawBullet(tmp->value, renderer);
+		tmp = tmp->next;
+	}
 }
 
 void draw()
@@ -74,7 +96,7 @@ void draw()
 	DrawPlayer(player, renderer);
 	for (int i = 0; i < NUM_ENEMY; i++)
 		DrawEnemy(enemy[i], renderer);
-	DrawBullet(bullet, renderer);
+	drawAllBullets();
 
 	SDL_RenderPresent(renderer);
 }
@@ -109,6 +131,8 @@ void quitSDL()
 int main(int argc, char** argv)
 {
 	initSDL();
+	
+	menu(renderer);
 
 	run();
 

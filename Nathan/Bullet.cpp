@@ -1,77 +1,47 @@
 #include "Bullet.h"
 
-void InitBullet(Bullet* bullet, Player* player, SDL_Renderer* renderer)
+void InitBullet(Bullet* bullet, SDL_Renderer* renderer, int dir, Vec2 pos)
 {
 	bullet->pBulletTexture = SDL_LoadTexture(renderer, "Sprites/pierre.bmp");
 	bullet->speed = 0.2f;
-
-
+	bullet->startPos = pos;
+	bullet->bulletPos = pos;
+	bullet->dir = dir;
 }
 
-void UpdateBullet(Bullet* bullet, Player* player, Input* input)
-{
-	Vec2 startPos;
-	startPos.x = 800;
-	startPos.y = 600;
-	bullet->down = 0;
-	bullet->up = 0;
-	bullet->right = 0;
-	bullet->left = 0;
-	if (input->space)
+bool UpdateBullet(Bullet* bullet , double deltaTime )
+{	
+	if ((dist(bullet->startPos, bullet->bulletPos)) < (5 * 32))
 	{
-		startPos = player->pos;
-		bullet->bulletPos = startPos;
-		bullet->bulletExist = true;
-		
-		switch (player->animationNum)
+		switch (bullet->dir)
 		{
 		case 0:
-			bullet->down = 1;
+			bullet->bulletPos.y += bullet->speed * deltaTime;
 			break;
-		case 1 :
-			bullet->up = 1;
+		case 1:
+			bullet->bulletPos.y -= bullet->speed * deltaTime;
 			break;
-		case 2 :
-			bullet->right = 1;
+		case 2:
+			bullet->bulletPos.x += bullet->speed * deltaTime;
 			break;
-		case 3 :
-			bullet->left = 1;
-		
+		case 3:
+			bullet->bulletPos.x -= bullet->speed * deltaTime;
+			break;
 		}
-	}
-	
-	if ((dist(startPos, bullet->bulletPos)) < (5 * 32))
-	{
-		if (bullet->down == 1)
-			bullet->bulletPos.y += 0.2;
-		else if (bullet->up == 1)
-			bullet->bulletPos.y -= 0.2;
-		else if (bullet->right == 1)
-			bullet->bulletPos.x += 0.2;
-		else if (bullet->left ==1)
-			bullet->bulletPos.x -= 0.2;
+		return true;
 
 	}
 	else
-	{
-		bullet->bulletExist = false;
-		bullet->down = 0;
-		bullet->up = 0;
-		bullet->left = 0;
-		bullet->right = 0;
-	}
+		return false;
 }
 
 void DrawBullet(Bullet* bullet, SDL_Renderer* renderer)
 {
-	if (bullet->bulletExist)
-	{
-		SDL_Rect rect;
-		rect.x = bullet->bulletPos.x;
-		rect.y = bullet->bulletPos.y;
-		rect.h = 32;
-		rect.w = 32;
+	SDL_Rect rect;
+	rect.x = bullet->bulletPos.x;
+	rect.y = bullet->bulletPos.y;
+	rect.h = 16;
+	rect.w = 16;
 
-		SDL_RenderCopy(renderer, bullet->pBulletTexture, NULL, &rect);
-	}
+	SDL_RenderCopy(renderer, bullet->pBulletTexture, NULL, &rect);
 }

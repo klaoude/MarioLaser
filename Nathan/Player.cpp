@@ -15,9 +15,11 @@ void InitPlayer(Player* player, SDL_Renderer* renderer)
 	player->speed = 0.2f;
 
 	player->animationNum = 0;
+
+	player->temps = SDL_GetTicks();
 }
 
-void UpdatePlayer(Player* player, Input* input, Level* level, double deltatime)
+void UpdatePlayer(Player* player, Input* input, File** bullets, Level* level, SDL_Renderer* renderer, double deltatime)
 {
 	if (input->up)
 	{
@@ -49,6 +51,14 @@ void UpdatePlayer(Player* player, Input* input, Level* level, double deltatime)
 			player->pos.x -= player->speed * deltatime;
 		player->animationNum = 2;
 	}
+
+	if (input->space && (SDL_GetTicks() - player->temps) > 400)
+	{
+		player->temps = SDL_GetTicks();
+		Bullet* bullet = (Bullet*)malloc(sizeof(Bullet));
+		InitBullet(bullet, renderer, player->animationNum, player->pos);
+		pushFile(bullets, bullet);			
+   }
 }
 
 void DrawPlayer(Player* player, SDL_Renderer* renderer)

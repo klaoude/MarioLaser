@@ -1,19 +1,16 @@
 #pragma once
 #include <SDL.h>
-#include "Player.h"
 #include "Utils.h"
-#include "Level.h"
-
 
 typedef struct Bullet
 {
 	SDL_Texture* pBulletTexture;
-	unsigned char up, down, left, right;
 	Vec2 bulletPos;
 	double speed;
-	bool bulletExist;
+	Vec2 startPos;
+	int dir;
 }Bullet;
 
 void DrawBullet(Bullet* bullet, SDL_Renderer* renderer);
-void UpdateBullet(Bullet* bullet, Player* player, Input* input);
-void InitBullet(Bullet* bullet, Player* player, SDL_Renderer* renderer);
+bool UpdateBullet(Bullet* bullet, double deltaTime);
+void InitBullet(Bullet* bullet, SDL_Renderer* renderer, int dir, Vec2 pos);
