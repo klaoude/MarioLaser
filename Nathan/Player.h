@@ -14,6 +14,7 @@ typedef struct Player
 	unsigned char animationNum = 0;
 	double speed;
 	unsigned char PlayerLife = 10;
+	int vie = 10;	
 
 	Uint32 temps;
 } Player;

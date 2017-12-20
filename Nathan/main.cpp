@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <time.h>
 
 #include "Player.h"
@@ -6,6 +7,7 @@
 #include "Level.h"
 #include "Bullet.h"
 #include "Menu.h"
+#include "HUD.h"
 
 #define SCREEN_HEIGHT 600
 #define SCREEN_WIDTH 800
@@ -23,12 +25,15 @@ Player* player;
 Enemy** enemy;
 Input* input;
 File* bullets;
-
+Vie* vie;
+Texte* texte;
 Level* level;
+
 
 void initSDL()
 {
 	SDL_Init(SDL_INIT_VIDEO);
+	
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
@@ -46,11 +51,16 @@ void initSDL()
 	input = (Input*)malloc(sizeof(Input));
 	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
 	level = (Level*)malloc(sizeof(Level));
+	vie = (Vie*)malloc(sizeof(Vie));
+	texte = (Texte*)malloc(sizeof(Texte));
 
 	InitLevel(level, renderer, "Levels/level1");
 	InitPlayer(player, renderer);
 	for (int i = 0; i < NUM_ENEMY; i++)
 		InitEnemy(enemy[i], renderer, {300.f, 100.f+i*50.f});
+	InitVie(vie, renderer);
+	InitText(texte);
+
 }
 
 void updateAllBullets(double deltaTime)
@@ -97,6 +107,8 @@ void draw()
 	for (int i = 0; i < NUM_ENEMY; i++)
 		DrawEnemy(enemy[i], renderer);
 	drawAllBullets();
+	DrawVie(vie, renderer);
+	DrawTexte(texte);
 
 	SDL_RenderPresent(renderer);
 }
