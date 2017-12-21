@@ -12,16 +12,14 @@ typedef struct Vie
 
 typedef struct Texte
 {
-	SDL_Surface  *ecran = NULL, *texte = NULL, *fond = NULL;
-	TTF_Font *police = NULL;
-	SDL_Rect*   textPos;
+	SDL_Surface* texte = NULL, *fond = NULL;
+	TTF_Font* police = NULL;
+	SDL_Rect* textPos;
 	SDL_Color couleurNoire;
-}Texte;
-
-
+} Texte;
 
 void InitVie(Vie* vie, SDL_Renderer* renderer);
 void DrawVie(Vie* vie, SDL_Renderer* renderer);
 void InitText(Texte* texte);
-void DrawTexte(Texte* texte);
+void DrawTexte(Texte* texte, SDL_Renderer* renderer);
 

@@ -6,10 +6,8 @@ void InitVie(Vie* vie, SDL_Renderer* renderer)
 	vie->viePos.x = 200;
 	vie->viePos.y =8;
 	vie->PointVie = 400;
-
-	
-
 }
+
 void DrawVie(Vie* vie, SDL_Renderer* renderer)
 {
 	SDL_Rect rect;
@@ -24,22 +22,27 @@ void DrawVie(Vie* vie, SDL_Renderer* renderer)
 void InitText(Texte* texte)
 {
 	TTF_Init();
-	texte->police = TTF_OpenFont("8bit.ttf", 65);
+	texte->police = TTF_OpenFont("Fonts/8bit.ttf", 65);
 	texte->couleurNoire = { 0, 0, 0 };
+	texte->texte = TTF_RenderText_Blended(texte->police, "Vie", texte->couleurNoire);
 }
 
-void DrawTexte(Texte* texte)
-{
-	texte->texte = TTF_RenderText_Blended(texte->police, "Vie", texte->couleurNoire);
-	SDL_FillRect(texte->ecran, NULL, SDL_MapRGB(texte->ecran->format, 255, 255, 255));
+void DrawTexte(Texte* texte, SDL_Renderer* renderer)
+{	
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, texte->texte);
+
 	SDL_Rect rect;
 	rect.x = 0;
 	rect.y = 0;
-	SDL_BlitSurface(texte->fond, NULL, texte->ecran, &rect); /* Blit du fond */
+	SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
 
 	rect.x = 180;
 	rect.y = 8;
-	SDL_BlitSurface(texte->fond, NULL, texte->ecran, &rect); /* Blit du texte */
+	SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
+	SDL_RenderCopy(renderer, texture, NULL, &rect);
+
+	SDL_DestroyTexture(texture);
 }
 
 

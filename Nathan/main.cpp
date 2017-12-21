@@ -29,11 +29,9 @@ Vie* vie;
 Texte* texte;
 Level* level;
 
-
 void initSDL()
 {
 	SDL_Init(SDL_INIT_VIDEO);
-	
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
@@ -60,7 +58,6 @@ void initSDL()
 		InitEnemy(enemy[i], renderer, {300.f, 100.f+i*50.f});
 	InitVie(vie, renderer);
 	InitText(texte);
-
 }
 
 void updateAllBullets(double deltaTime)
@@ -108,7 +105,7 @@ void draw()
 		DrawEnemy(enemy[i], renderer);
 	drawAllBullets();
 	DrawVie(vie, renderer);
-	DrawTexte(texte);
+	DrawTexte(texte, renderer);
 
 	SDL_RenderPresent(renderer);
 }
@@ -139,8 +136,6 @@ void quitSDL()
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
-
-
 
 int main(int argc, char** argv)
 {
