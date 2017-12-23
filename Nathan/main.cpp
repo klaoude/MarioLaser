@@ -78,7 +78,7 @@ void update(double deltatime)
 	GetInput(input);
 
 	for (int i = 0; i < NUM_ENEMY; i++)
-		UpdateEnemy(enemy[i], player, level, deltatime);
+		UpdateEnemy(enemy[i], player, level, deltatime,vie);
 	UpdatePlayer(player, input, &bullets, level, renderer, deltatime);
 	updateAllBullets(deltatime);
 }

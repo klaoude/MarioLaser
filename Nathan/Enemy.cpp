@@ -1,5 +1,7 @@
 #include "Enemy.h"
 #include "Player.h"
+#include "Utils.h"
+#include "HUD.h"
 
 void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
 {
@@ -18,8 +20,7 @@ void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
 
 	enemy->animationNum = 0;
 }
-void UpdateEnemy(Enemy* enemy, Player* player, 
-				 Level* level, double deltatime)
+void UpdateEnemy(Enemy* enemy, Player* player, Level* level, double deltatime,Vie* vie)
 {
 	if (dist(player->pos, enemy->pos) < 150)
 	{
@@ -57,6 +58,10 @@ void UpdateEnemy(Enemy* enemy, Player* player,
 			(player->pos.x < enemy->pos.x))
 		{
 			enemy->animationNum = 3;
+		}
+		if (dist(player->pos, enemy->pos) < 10)
+		{
+			vie->PointVie -= 1;
 		}
 	}
 }
