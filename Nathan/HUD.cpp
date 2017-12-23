@@ -22,7 +22,7 @@ void DrawVie(Vie* vie, SDL_Renderer* renderer)
 void InitText(Texte* texte)
 {
 	TTF_Init();
-	texte->police = TTF_OpenFont("Fonts/8bit.ttf", 65);
+	texte->police = TTF_OpenFont("Fonts/8bit.ttf", 30);
 	texte->couleurNoire = { 0, 0, 0 };
 	texte->texte = TTF_RenderText_Blended(texte->police, "Vie", texte->couleurNoire);
 }
