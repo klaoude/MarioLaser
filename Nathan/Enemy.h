@@ -15,5 +15,7 @@ typedef struct Enemy
 
 void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, 
 			   Vec2 pos);
-void UpdateEnemy(Enemy* enemy,Player* player,  Level* level, double deltatime, Vie* vie);
+void UpdateEnemy(Enemy* enemy, Player* player, Level* level, double deltatime, Vie* vie);
 void DrawEnemy(Enemy* enemy, SDL_Renderer* renderer);
+
+unsigned char CheckColl(Enemy* enemy, Bullet* bullet);

@@ -1,5 +1,6 @@
 #include "Bullet.h"
 
+//init bullet pos and texture
 void InitBullet(Bullet* bullet, SDL_Renderer* renderer, int dir, Vec2 pos)
 {
 	bullet->pBulletTexture = SDL_LoadTexture(renderer, "Sprites/pierre.bmp");
@@ -9,7 +10,10 @@ void InitBullet(Bullet* bullet, SDL_Renderer* renderer, int dir, Vec2 pos)
 	bullet->dir = dir;
 }
 
-bool UpdateBullet(Bullet* bullet , double deltaTime )
+//update a bullet
+//return true if exist
+//return false if must be destroy
+bool UpdateBullet(Bullet* bullet , double deltaTime)
 {	
 	if ((dist(bullet->startPos, bullet->bulletPos)) < (5 * 32))
 	{
@@ -29,7 +33,6 @@ bool UpdateBullet(Bullet* bullet , double deltaTime )
 			break;
 		}
 		return true;
-
 	}
 	else
 		return false;

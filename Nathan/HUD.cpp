@@ -32,13 +32,8 @@ void DrawTexte(Texte* texte, SDL_Renderer* renderer)
 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, texte->texte);
 
 	SDL_Rect rect;
-	rect.x = 0;
-	rect.y = 0;
-	//SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
-	//SDL_RenderCopy(renderer, texture, NULL, &rect);
-
 	rect.x = 140;
-	rect.y =3;
+	rect.y = 3;
 	SDL_QueryTexture(texture, NULL, NULL, &rect.w, &rect.h);
 	SDL_RenderCopy(renderer, texture, NULL, &rect);
 
