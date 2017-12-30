@@ -12,7 +12,7 @@ typedef struct Vie
 
 typedef struct Texte
 {
-	SDL_Surface* texte = NULL, *fond = NULL;
+	SDL_Surface* texteVie = NULL, *fond = NULL;
 	TTF_Font* police = NULL;
 	SDL_Rect* textPos;
 	SDL_Color couleurNoire;
