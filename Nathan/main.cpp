@@ -22,13 +22,14 @@ Uint64 temps2 = 0;
 const char WINDOW_TITLE[] = "MarioLazer";
 
 Player* player;
-Enemy** enemy;
+Enemy** enemy; //array of enemy* 
 Input* input;
 File* bullets;
 Vie* vie;
 Texte* texte;
 Level* level;
 
+//init SDL and init all object
 void initSDL()
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -60,29 +61,44 @@ void initSDL()
 	InitText(texte);
 }
 
+//update all bullets
 void updateAllBullets(double deltaTime)
 {
 	File* tmp = bullets;
 	while (tmp != NULL && tmp != (File*)0xdddddddd)
 	{
-		if (UpdateBullet(tmp->value, deltaTime) == false)
+		if (!UpdateBullet(tmp->value, deltaTime))
 		{
- 			delFile(&bullets, tmp->value);
+			delFile(&bullets, tmp->value);
+			tmp = tmp->next;
+			break;
 		}
+
+		for (int i = 0; i < NUM_ENEMY; i++)
+			if (enemy[i] != NULL && CheckColl(enemy[i], tmp->value))
+			{
+				free(enemy[i]);
+				enemy[i] = NULL;
+			}
+
 		tmp = tmp->next;
 	}
 }
 
+//update all object
 void update(double deltatime)
 {
 	GetInput(input);
 
 	for (int i = 0; i < NUM_ENEMY; i++)
-		UpdateEnemy(enemy[i], player, level, deltatime,vie);
+		if (enemy[i] != NULL)
+			UpdateEnemy(enemy[i], player, level, deltatime, vie);
+
 	UpdatePlayer(player, input, &bullets, level, renderer, deltatime);
 	updateAllBullets(deltatime);
 }
 
+//draw all bullets
 void drawAllBullets()
 {
 	File* tmp = bullets;
@@ -93,6 +109,7 @@ void drawAllBullets()
 	}
 }
 
+//draw all object
 void draw()
 {
 	SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
@@ -101,8 +118,11 @@ void draw()
 	//draw
 	DrawLevel(level, renderer, temps2);
 	DrawPlayer(player, renderer);
+
 	for (int i = 0; i < NUM_ENEMY; i++)
-		DrawEnemy(enemy[i], renderer);
+		if(enemy[i] != NULL)
+			DrawEnemy(enemy[i], renderer);
+
 	drawAllBullets();
 	DrawVie(vie, renderer);
 	DrawTexte(texte, renderer);
@@ -110,6 +130,7 @@ void draw()
 	SDL_RenderPresent(renderer);
 }
 
+//main loop
 void run()
 {
 	Uint64 NOW = SDL_GetPerformanceCounter();
@@ -130,6 +151,7 @@ void run()
 	}
 }
 
+//quit
 void quitSDL()
 {
 	SDL_GL_DeleteContext(glContext);
@@ -149,5 +171,3 @@ int main(int argc, char** argv)
 
 	return 0;
 }
-
-  

@@ -3,6 +3,7 @@
 #include "Utils.h"
 #include "HUD.h"
 
+//init enemy pos and textures
 void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
 {
 	enemy->pEnemyTexture[0] 
@@ -20,7 +21,8 @@ void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
 
 	enemy->animationNum = 0;
 }
-void UpdateEnemy(Enemy* enemy, Player* player, Level* level, double deltatime,Vie* vie)
+
+void UpdateEnemy(Enemy* enemy, Player* player, Level* level, double deltatime, Vie* vie)
 {
 	if (dist(player->pos, enemy->pos) < 150)
 	{
@@ -78,4 +80,9 @@ void DrawEnemy(Enemy* enemy, SDL_Renderer* renderer)
 				   enemy->pEnemyTexture[enemy->animationNum], 
 				   NULL, 
 				   &rect);
+}
+
+unsigned char CheckColl(Enemy* enemy, Bullet* bullet)
+{
+	return dist(enemy->pos, bullet->bulletPos) < 10;
 }
