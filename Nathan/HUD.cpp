@@ -24,12 +24,13 @@ void InitText(Texte* texte)
 	TTF_Init();
 	texte->police = TTF_OpenFont("Fonts/8bit.ttf", 22);
 	texte->couleurNoire = { 0, 0, 0 };
-	texte->texte = TTF_RenderText_Blended(texte->police, "Vie", texte->couleurNoire);
+	texte->texteVie = TTF_RenderText_Blended(texte->police, "Vie", texte->couleurNoire);
+	//texte->texteGO = TTF_RenderText_Blended(texte->police, "GAME OVER", texte->couleurNoire);
 }
 
 void DrawTexte(Texte* texte, SDL_Renderer* renderer)
 {	
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, texte->texte);
+	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, texte->texteVie);
 
 	SDL_Rect rect;
 	rect.x = 140;
@@ -39,6 +40,8 @@ void DrawTexte(Texte* texte, SDL_Renderer* renderer)
 
 	SDL_DestroyTexture(texture);
 }
+
+
 
 
 
