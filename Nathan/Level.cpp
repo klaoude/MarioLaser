@@ -120,5 +120,5 @@ bool CollideWithWorldE(Level* level, Enemy* enemy)
 
 char getCase(Level* level, int x, int y) 
 { 
-	return level->levelTab[y][x]; 
+	return level->levelTab[x][y]; 
 }

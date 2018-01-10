@@ -1,6 +1,7 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <time.h>
+#include <string.h>
 
 #include "Player.h"
 #include "Enemy.h"
@@ -26,20 +27,23 @@ Enemy** enemy; //array of enemy*
 Input* input;
 File* bullets;
 Vie* vie;
-Texte* texte;
+Texte* textVie, *textScore, *textLevel;
 Level* level;
+
+unsigned int score = 0;
+unsigned int levelNum = 1;
 
 void spawnEnemies()
 {
 	srand(time(NULL));
 
 	float x, y;
-	for (int i = 0; i < NUM_ENEMY; i++)
+	for (int i = 0; i < levelNum; i++)
 	{
 		do
 		{
-			x = rand() % level->w;
-			y = rand() % level->h;
+			x = rand() % (level->w - 2);
+			y = rand() % (level->h - 2);
 		} while (getCase(level, (int)x, (int)y) != 0);
 		InitEnemy(enemy[i], renderer, { y * 32.f, x *32.f });
 	}		
@@ -63,20 +67,23 @@ void initSDL()
 void init()
 {
 	player = (Player*)malloc(sizeof(Player));
-	enemy = (Enemy**)malloc(sizeof(Enemy*) * NUM_ENEMY);
-	for (int i = 0; i < NUM_ENEMY; i++)
+	enemy = (Enemy**)malloc(sizeof(Enemy*) * levelNum);
+	for (int i = 0; i < levelNum; i++)
 		enemy[i] = (Enemy*)malloc(sizeof(Enemy));
 	input = (Input*)malloc(sizeof(Input));
 	input->up = 0; input->down = 0; input->left = 0; input->right = 0; input->space = 0;
 	level = (Level*)malloc(sizeof(Level));
 	vie = (Vie*)malloc(sizeof(Vie));
-	texte = (Texte*)malloc(sizeof(Texte));
 
 	InitLevel(level, renderer, "Levels/level1");
 	InitPlayer(player, renderer);
+	
 	spawnEnemies();
+
 	InitVie(vie, renderer);
-	InitText(texte);
+	InitText(&textVie, { 140, 3 }, "Vie");
+	InitText(&textScore, { 600, 3 }, "Score 0");
+	InitText(&textLevel, { 600, 30 }, "Level 1");
 }
 
 //update all bullets
@@ -92,14 +99,40 @@ void updateAllBullets(double deltaTime)
 			break;
 		}
 
-		for (int i = 0; i < NUM_ENEMY; i++)
+		for (int i = 0; i < levelNum; i++)
 			if (enemy[i] != NULL && CheckColl(enemy[i], tmp->value))
 			{
 				free(enemy[i]);
 				enemy[i] = NULL;
+				score++;
+				char scoreStr[5];
+				sprintf(scoreStr, "%d", score + levelNum * (levelNum - 1) / 2);
+				char tmp[11] = "Score ";
+				strcat(tmp, scoreStr);
+				changeText(textScore, tmp);
 			}
 
 		tmp = tmp->next;
+	}
+
+	if (score >= levelNum)
+	{	
+		free(enemy);
+
+		score = 0;
+		levelNum++;
+
+		char levelStr[3];
+		sprintf(levelStr, "%d", levelNum);
+		char tmp[9] = "Level ";
+		strcat(tmp, levelStr);
+		changeText(textLevel, tmp);
+
+		enemy = (Enemy**)malloc(levelNum * sizeof(Enemy*));
+		for (int i = 0; i < levelNum; i++)
+			enemy[i] = (Enemy*)malloc(sizeof(Enemy));
+
+		spawnEnemies();
 	}
 }
 
@@ -108,7 +141,7 @@ void update(double deltatime)
 {
 	GetInput(input);
 
-	for (int i = 0; i < NUM_ENEMY; i++)
+	for (int i = 0; i < levelNum; i++)
 		if (enemy[i] != NULL)
 			UpdateEnemy(enemy[i], player, level, deltatime, vie);
 
@@ -137,13 +170,15 @@ void draw()
 	DrawLevel(level, renderer, temps2);
 	DrawPlayer(player, renderer);
 
-	for (int i = 0; i < NUM_ENEMY; i++)
+	for (int i = 0; i < levelNum; i++)
 		if(enemy[i] != NULL)
 			DrawEnemy(enemy[i], renderer);
 
 	drawAllBullets();
 	DrawVie(vie, renderer);
-	DrawTexte(texte, renderer);
+	DrawTexte(textVie, renderer);
+	DrawTexte(textScore, renderer);
+	DrawTexte(textLevel, renderer);
 
 	SDL_RenderPresent(renderer);
 }
