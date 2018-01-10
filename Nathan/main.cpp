@@ -29,6 +29,22 @@ Vie* vie;
 Texte* texte;
 Level* level;
 
+void spawnEnemies()
+{
+	srand(time(NULL));
+
+	float x, y;
+	for (int i = 0; i < NUM_ENEMY; i++)
+	{
+		do
+		{
+			x = rand() % level->w;
+			y = rand() % level->h;
+		} while (getCase(level, (int)x, (int)y) != 0);
+		InitEnemy(enemy[i], renderer, { y * 32.f, x *32.f });
+	}		
+}
+
 //init SDL and init all object
 void initSDL()
 {
@@ -42,7 +58,10 @@ void initSDL()
 	window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	glContext = SDL_GL_CreateContext(window);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+}
 
+void init()
+{
 	player = (Player*)malloc(sizeof(Player));
 	enemy = (Enemy**)malloc(sizeof(Enemy*) * NUM_ENEMY);
 	for (int i = 0; i < NUM_ENEMY; i++)
@@ -55,8 +74,7 @@ void initSDL()
 
 	InitLevel(level, renderer, "Levels/level1");
 	InitPlayer(player, renderer);
-	for (int i = 0; i < NUM_ENEMY; i++)
-		InitEnemy(enemy[i], renderer, {300.f, 100.f+i*50.f});
+	spawnEnemies();
 	InitVie(vie, renderer);
 	InitText(texte);
 }
@@ -164,6 +182,8 @@ int main(int argc, char** argv)
 	initSDL();
 	
 	menu(renderer);
+
+	init();
 
 	run();
 

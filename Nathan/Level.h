@@ -21,3 +21,5 @@ void DrawLevel(Level* level, SDL_Renderer* renderer, Uint64 temps2);
 
 bool CollideWithWorldP(Level* level, struct Player* player);
 bool CollideWithWorldE(Level* level, struct Enemy* enemy);
+
+char getCase(Level* level, int x, int y); 
