@@ -14,7 +14,7 @@ typedef struct Enemy
 } Enemy;
 
 void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, 
-			   Vec2 pos);
+			   Vec2 pos, int levelNum);
 void UpdateEnemy(Enemy* enemy, Player* player, Level* level, double deltatime, Vie* vie);
 void DrawEnemy(Enemy* enemy, SDL_Renderer* renderer);
 

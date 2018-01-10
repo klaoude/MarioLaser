@@ -1,0 +1,67 @@
+﻿'Nathan.exe' (Win32) : Chargé 'C:\Users\nath\Desktop\MarioLaser\Debug\Nathan.exe'. Les symboles ont été chargés.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ntdll.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\kernel32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\kernel32.dll'
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\kernel32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\KernelBase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Users\nath\Desktop\MarioLaser\Debug\SDL2.dll'. Le module a été généré sans symboles.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\advapi32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\vcruntime140d.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ucrtbased.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\msvcrt.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SDL2_ttf.dll'. Le module a été généré sans symboles.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\sechost.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\rpcrt4.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\sspicli.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\libfreetype-6.dll'. Le module a été généré sans symboles.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\cryptbase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\bcryptprimitives.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\gdi32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\zlib1.dll'. Le module a été généré sans symboles.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\gdi32full.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\user32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\win32u.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\imm32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ole32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\combase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ucrtbase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\oleaut32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\msvcp_win.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\shell32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\cfgmgr32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\windows.storage.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\powrprof.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\shlwapi.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\kernel.appcore.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\SHCore.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\profapi.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\winmm.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\version.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\winmmbase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\winmmbase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\winmmbase.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\winmmbase.dll'
+'Nathan.exe' (Win32) : Déchargé 'C:\Windows\SysWOW64\winmmbase.dll'
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\uxtheme.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\opengl32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\glu32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\ddraw.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\dciman32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\msctf.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Program Files (x86)\TeamViewer\tv_w32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.14393.447_none_5507ded2cb4f7f4c\comctl32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_b9b9c39e4e2b88eb\ig9icd32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\wtsapi32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\dwmapi.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_b9b9c39e4e2b88eb\igc32.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+'Nathan.exe' (Win32) : Chargé 'C:\Windows\SysWOW64\clbcatq.dll'. Impossible de trouver ou d'ouvrir le fichier PDB.
+Le thread 0x15c0 s'est arrêté avec le code 0 (0x0).
+Le thread 0x1b68 s'est arrêté avec le code 0 (0x0).
+Le thread 0x3194 s'est arrêté avec le code 0 (0x0).
+Le thread 0x2d9c s'est arrêté avec le code 0 (0x0).
+Le thread 0x2fcc s'est arrêté avec le code 0 (0x0).
+Le thread 0x1d24 s'est arrêté avec le code 0 (0x0).
+Le thread 0x1590 s'est arrêté avec le code 0 (0x0).
+Le thread 0x104c s'est arrêté avec le code 0 (0x0).
+Le thread 0x272c s'est arrêté avec le code 0 (0x0).
+Le programme '[5752] Nathan.exe' s'est arrêté avec le code 0 (0x0).

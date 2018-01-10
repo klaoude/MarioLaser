@@ -4,7 +4,7 @@
 #include "HUD.h"
 
 //init enemy pos and textures
-void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
+void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos, int levelNum)
 {
 	enemy->pEnemyTexture[0] 
 		= SDL_LoadTexture(renderer, "Sprites/croco_avant.bmp");
@@ -17,7 +17,7 @@ void InitEnemy(Enemy* enemy, SDL_Renderer* renderer, Vec2 pos)
 
 	enemy->pos = pos;
 
-	enemy->speed = 0.05f;
+	enemy->speed = 0.05f + levelNum * 0.01f;//auggmente spped en fonction level
 
 	enemy->animationNum = 0;
 }
